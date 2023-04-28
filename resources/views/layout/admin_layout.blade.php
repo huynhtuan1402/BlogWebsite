@@ -270,7 +270,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="leftside-navigation">
                     <ul class="sidebar-menu" id="nav-accordion">
                         <li>
-                            <a href="{{url('/dashboard')}}">
+                            <a href="{{url('admin/dashboard')}}">
                                 <i class="fa fa-dashboard"></i>
                                 <span>Overview</span>
                             </a>

@@ -1,4 +1,4 @@
-@extends('layout.user_layout')
+{{-- @extends('layout.user_layout')
 @section('content')
     <div class="row">
         <div class="col-lg-12">
@@ -34,4 +34,4 @@
             </section>
         </div>
     </div>
-@endsection
+@endsection --}}
