@@ -3,8 +3,8 @@
     <!--main-starts-->
     <div class="col-md-8 about-left">
         <div class="about-one">
-            <p>Find The Most</p>
-            <h3>Coffee of the month</h3>
+            {{-- <p>Find The Most</p> --}}
+            <h3>Newest of the month</h3>
         </div>
         <div class="about-two">
             <a href="single.html"><img src="{{ asset('frontend/images') }}/post{{ $newestpost->id }}_1.jpg""
@@ -33,7 +33,7 @@
                     <div class="col-md-6 abt-left" style="height: 200px">
                         {{-- <a href="single.html"><img src="{{ asset('frontend/images') }}/c-3.jpg"
                                             alt="" /></a> --}}
-                        <h6>Find The Most</h6>
+                        {{-- <h6>Find The Most</h6> --}}
                         <h3><a href="{{ url('blog/post/' . $post->id) }}">{{ $post->title }}</a></h3>
                         <p>{!! $post->description !!}</p>
                         {{-- <label>May 29, 2015</label> --}}

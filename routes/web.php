@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CategoryHasPostsController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PostController;
@@ -56,10 +57,18 @@ Route::prefix('user')->middleware('auth')->group(function ($id) {
         Route::post('/update/{id}', [PostController::class, 'update']);
         Route::get('/destroy/{id}', [PostController::class, 'destroy']);
     });
+
+    //comment
+    route::prefix('comment')->group(function () {
+        Route::get('/', [CommentController::class, 'index']);
+        Route::get('/destroy/{id}', [CommentController::class, 'destroy']);
+    });
 });
 
 Route::prefix('blog')->group(function($id){
     Route::get('post/{id}',[HomeController::class,'show']);
     Route::get('category/{id}',[CategoryHasPostsController::class,'index']);
     Route::get('search/',[SearchController::class,'index']);
+    Route::post('/comment', [CommentController::class, 'store']);
+
 });

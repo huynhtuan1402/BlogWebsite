@@ -287,6 +287,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <span>Posts</span>
                             </a>
                         </li>
+                        <li class="sub-menu">
+                            <a href="{{url('/user/comment')}}">
+                                <i class="fa fa-book"></i>
+                                <span>Comments</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <!-- sidebar menu end-->

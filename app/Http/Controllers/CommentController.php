@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Comment;
-use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-class HomeController extends Controller
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,15 +15,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $data = [
-            'posts' => Post::all(),
-            'categories' => Category::all(),
-            'newestpost' => Post::orderby('id','desc')->first(),
-            'sidebartposts' =>Post::orderby('created_at','desc')->take(5)->get()
-
-        ];
-        
-        return view('pages.home')->with($data);
+        $comments = DB::table('comment')->leftJoin('post','comment.post_id','=','post.id')
+        ->select('comment.*','post.title')->get();
+        return view('pages.user.comments_list',compact('comments'));
     }
 
     /**
@@ -34,7 +27,7 @@ class HomeController extends Controller
      */
     public function create()
     {
-        //
+        // return view('')
     }
 
     /**
@@ -45,7 +38,16 @@ class HomeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name'=>'required',
+            'email'=>'required|email',
+            'message'=>'required'
+        ]);
+        $comment = $request->post();
+    //     // $comment['id']=$request->post('id');
+        Comment::create($comment);
+        return redirect('blog/post/'.$comment['post_id']);
+    // dd($comment);
     }
 
     /**
@@ -56,14 +58,7 @@ class HomeController extends Controller
      */
     public function show($id)
     {
-        $data = [
-            'post' => Post::find($id),
-            'categories' => Category::all(),
-            'comments' => Comment::where('post_id',$id)->get()
-        ];
-        return view('pages.blog.detail_post')->with($data);
-
-        // dd($data['comments']);
+        //
     }
 
     /**
@@ -97,6 +92,7 @@ class HomeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Comment::find($id)->delete();
+        return redirect('user/comment');
     }
 }
